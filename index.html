@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Embeveled Buttons with Clown Pop-Up</title>
+    <title>Enhanced Embeveled Buttons with Clown Pop-Up and Opposite Shadow Color</title>
     <style>
         body {
             margin: 0;
@@ -90,10 +90,22 @@
         const header = document.querySelector('header');
         const clownImage = document.getElementById('clown');
 
+        // Helper function to invert color
+        function invertColor(hex) {
+            const rgb = hex.replace('#', '').match(/.{1,2}/g).map(x => parseInt(x, 16));
+            const invertedRgb = rgb.map(x => 255 - x);
+            return `rgb(${invertedRgb.join(', ')})`;
+        }
+
         document.querySelectorAll('.nav-button').forEach(button => {
             button.addEventListener('mouseover', function() {
                 const color = this.getAttribute('data-hover-color');
                 header.style.backgroundColor = color;
+
+                // Calculate opposite color for button shadow
+                const oppositeColor = invertColor(color);
+                this.style.boxShadow = `10px 10px 20px ${oppositeColor}, -10px -10px 20px rgba(255, 255, 255, 0.5), 
+                                        inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.2)`;
 
                 // Show clown image at specified location
                 const clownX = this.getAttribute('data-clown-x');
@@ -105,6 +117,9 @@
 
             button.addEventListener('mouseout', function() {
                 header.style.backgroundColor = '#012035'; // Original header color
+                
+                // Reset button shadow to default
+                this.style.boxShadow = '10px 10px 20px rgba(246, 137, 52, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.5), inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.2)';
                 
                 // Hide clown image
                 clownImage.style.display = 'none';
