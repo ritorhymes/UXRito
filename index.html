@@ -41,21 +41,16 @@
             transition: all 0.4s ease;
         }
 
-        /* Hover Effect */
+        /* Hover Effect - lighter color */
         .nav-button:hover {
-            background-color: #001524;
+            background-color: #254A75; /* Lighter color on hover */
         }
 
-        /* Press Effect */
+        /* Press Effect - darker color */
         .nav-button:active {
-            background-color: #013d66; /* Lightened blue */
-            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
+            background-color: #011522; /* Darker color on press */
             transform: translateY(4px);
-            transition: transform 0.8s ease, background-color 0.4s ease;
-        }
-
-        .nav-button.released {
-            transform: translateY(0);
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
             transition: transform 0.4s ease;
         }
 
@@ -85,38 +80,35 @@
 
     <header>
         <nav>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="home">Home</button>
-            </a>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="about">About</button>
-            </a>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="web-design">Web Design</button>
-            </a>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="app-design">App Design</button>
-            </a>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="video">Video</button>
-            </a>
-            <a href="https://www.google.com" target="_blank">
-                <button class="nav-button" data-hover-color="contact">Contact</button>
-            </a>
+            <button class="nav-button" data-hover-color="home" data-url="https://www.google.com">Home</button>
+            <button class="nav-button" data-hover-color="about" data-url="https://www.google.com">About</button>
+            <button class="nav-button" data-hover-color="web-design" data-url="https://www.google.com">Web Design</button>
+            <button class="nav-button" data-hover-color="app-design" data-url="https://www.google.com">App Design</button>
+            <button class="nav-button" data-hover-color="video" data-url="https://www.google.com">Video</button>
+            <button class="nav-button" data-hover-color="contact" data-url="https://www.google.com">Contact</button>
         </nav>
     </header>
 
     <script>
-        // Handle button press and release effect before link loading
+        // Handle button press and release effect before loading the link
         document.querySelectorAll('.nav-button').forEach(button => {
-            button.addEventListener('mousedown', function() {
-                this.classList.remove('released');
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent immediate link navigation
+
+                // Add press effect
+                this.style.backgroundColor = "#011522"; // Darker color on press
+                this.style.transform = "translateY(4px)";
+                this.style.boxShadow = "inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05)";
+
+                // Delay link navigation until after animation
+                setTimeout(() => {
+                    window.location.href = this.getAttribute('data-url'); // Navigate after 1.2s (0.8s press + 0.4s release)
+                }, 1200);
             });
 
             button.addEventListener('mouseup', function() {
-                setTimeout(() => {
-                    this.classList.add('released');
-                }, 400); // Release after .4s delay
+                this.style.transform = "translateY(0)"; // Reset position after press
+                this.style.transition = "transform 0.4s ease";
             });
         });
     </script>
