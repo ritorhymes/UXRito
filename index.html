@@ -3,93 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Embeveled Buttons</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
 
         header {
-            background-color: #f8f9fa;
-            padding: 10px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        main {
+            background-color: #012035;
+            text-align: center;
             padding: 20px;
         }
 
-        footer {
-            text-align: center;
+        nav {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
         }
 
-        /* Styles for the images */
-        .hover-image {
-            width: 200px;
-            height: auto;
-            transition: background-color 0.5s ease;
+        /* Button Styles */
+        .nav-button {
+            background-color: #012035;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        /* Hover effect */
-        .hover-image:hover {
-            animation: flash 1s infinite alternate;
+        /* Hover Effect */
+        .nav-button:hover {
+            background-color: #001524;
         }
 
-        /* Flashing effect */
-        @keyframes flash {
-            0% {
-                background-color: red;
-            }
-            100% {
-                background-color: blue;
-            }
+        /* Active/Press Effect */
+        .nav-button:active {
+            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
+            transform: translateY(2px);
+            transition: all 0.4s ease;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>My Website</h1>
     </header>
 
-    <main>
-        <section id="home">
-            <h2>This is the Home Page</h2>
-            <!-- Added images with hover effect -->
-            <img src="images/userresearch.png" alt="User Research" class="hover-image">
-            <img src="images/prototyping1.png" alt="Prototyping" class="hover-image">
-        </section>
-        <section id="about">
-            <h2>About Me</h2>
-        </section>
-        <section id="contact">
-            <h2>Contact Information</h2>
-        </section>
-    </main>
+    <nav>
+        <button class="nav-button">Home</button>
+        <button class="nav-button">About</button>
+        <button class="nav-button">Web Design</button>
+        <button class="nav-button">App Design</button>
+        <button class="nav-button">Video</button>
+        <button class="nav-button">Contact</button>
+    </nav>
 
-    <footer>
-        <p>&copy; 2024 My Website</p>
-    </footer>
 </body>
 </html>
