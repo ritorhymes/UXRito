@@ -53,32 +53,6 @@
             box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
             transition: transform 0.4s ease;
         }
-
-        /* Unique Hover Colors for Header */
-        .nav-button[data-hover-color="home"]:hover ~ .header-bg {
-            background-color: #FF5733; /* Orange for Home */
-        }
-        .nav-button[data-hover-color="about"]:hover ~ .header-bg {
-            background-color: #33FF57; /* Green for About */
-        }
-        .nav-button[data-hover-color="web-design"]:hover ~ .header-bg {
-            background-color: #5733FF; /* Purple for Web Design */
-        }
-        .nav-button[data-hover-color="app-design"]:hover ~ .header-bg {
-            background-color: #33C3FF; /* Sky Blue for App Design */
-        }
-        .nav-button[data-hover-color="video"]:hover ~ .header-bg {
-            background-color: #FFC133; /* Yellow for Video */
-        }
-        .nav-button[data-hover-color="contact"]:hover ~ .header-bg {
-            background-color: #FF3333; /* Red for Contact */
-        }
-
-        /* Resetting Header Color When Hovering Ends */
-        header:hover {
-            background-color: #012035;
-        }
-
     </style>
 </head>
 <body>
@@ -86,19 +60,30 @@
     <div class="header-bg">
         <header>
             <nav>
-                <button class="nav-button" data-hover-color="home" data-url="https://www.google.com">Home</button>
-                <button class="nav-button" data-hover-color="about" data-url="https://www.google.com">About</button>
-                <button class="nav-button" data-hover-color="web-design" data-url="https://www.google.com">Web Design</button>
-                <button class="nav-button" data-hover-color="app-design" data-url="https://www.google.com">App Design</button>
-                <button class="nav-button" data-hover-color="video" data-url="https://www.google.com">Video</button>
-                <button class="nav-button" data-hover-color="contact" data-url="https://www.google.com">Contact</button>
+                <button class="nav-button" data-hover-color="#FF5733" data-url="https://www.google.com">Home</button>
+                <button class="nav-button" data-hover-color="#33FF57" data-url="https://www.google.com">About</button>
+                <button class="nav-button" data-hover-color="#5733FF" data-url="https://www.google.com">Web Design</button>
+                <button class="nav-button" data-hover-color="#33C3FF" data-url="https://www.google.com">App Design</button>
+                <button class="nav-button" data-hover-color="#FFC133" data-url="https://www.google.com">Video</button>
+                <button class="nav-button" data-hover-color="#FF3333" data-url="https://www.google.com">Contact</button>
             </nav>
         </header>
     </div>
 
     <script>
-        // Handle button press and release effect before loading the link
+        const header = document.querySelector('header');
+
         document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('mouseover', function() {
+                const color = this.getAttribute('data-hover-color');
+                header.style.backgroundColor = color;
+            });
+
+            button.addEventListener('mouseout', function() {
+                header.style.backgroundColor = '#012035'; // Original header color
+            });
+
+            // Handle button press and release effect before loading the link
             button.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent immediate link navigation
 
