@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embeveled Buttons</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             margin: 0;
@@ -12,16 +11,19 @@
             background-color: #f8f9fa;
         }
 
+        /* Header Styles */
         header {
             background-color: #012035;
-            text-align: center;
-            padding: 20px;
-        }
-
-        nav {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            align-items: center;
+            height: 150px;
+            transition: background-color 0.4s ease;
+        }
+
+        /* Nav Styles */
+        nav {
+            display: flex;
         }
 
         /* Button Styles */
@@ -36,7 +38,7 @@
             border-radius: 8px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.4s ease;
         }
 
         /* Hover Effect */
@@ -44,28 +46,80 @@
             background-color: #001524;
         }
 
-        /* Active/Press Effect */
+        /* Press Effect */
         .nav-button:active {
+            background-color: #013d66; /* Lightened blue */
             box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
-            transform: translateY(2px);
-            transition: all 0.4s ease;
+            transform: translateY(4px);
+            transition: transform 0.8s ease, background-color 0.4s ease;
         }
+
+        .nav-button.released {
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+        }
+
+        /* Unique Hover Colors for Header */
+        .nav-button[data-hover-color="home"]:hover ~ header {
+            background-color: #FF5733; /* Orange for Home */
+        }
+        .nav-button[data-hover-color="about"]:hover ~ header {
+            background-color: #33FF57; /* Green for About */
+        }
+        .nav-button[data-hover-color="web-design"]:hover ~ header {
+            background-color: #5733FF; /* Purple for Web Design */
+        }
+        .nav-button[data-hover-color="app-design"]:hover ~ header {
+            background-color: #33C3FF; /* Sky Blue for App Design */
+        }
+        .nav-button[data-hover-color="video"]:hover ~ header {
+            background-color: #FFC133; /* Yellow for Video */
+        }
+        .nav-button[data-hover-color="contact"]:hover ~ header {
+            background-color: #FF3333; /* Red for Contact */
+        }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>My Website</h1>
+        <nav>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="home">Home</button>
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="about">About</button>
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="web-design">Web Design</button>
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="app-design">App Design</button>
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="video">Video</button>
+            </a>
+            <a href="https://www.google.com" target="_blank">
+                <button class="nav-button" data-hover-color="contact">Contact</button>
+            </a>
+        </nav>
     </header>
 
-    <nav>
-        <button class="nav-button">Home</button>
-        <button class="nav-button">About</button>
-        <button class="nav-button">Web Design</button>
-        <button class="nav-button">App Design</button>
-        <button class="nav-button">Video</button>
-        <button class="nav-button">Contact</button>
-    </nav>
+    <script>
+        // Handle button press and release effect before link loading
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.remove('released');
+            });
+
+            button.addEventListener('mouseup', function() {
+                setTimeout(() => {
+                    this.classList.add('released');
+                }, 400); // Release after .4s delay
+            });
+        });
+    </script>
 
 </body>
 </html>
