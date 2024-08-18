@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embeveled Buttons</title>
+    <title>Embeveled Buttons with Clown Pop-Up</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
+            position: relative;
         }
 
         /* Header Styles */
@@ -36,7 +37,7 @@
             font-weight: bold;
             border: none;
             border-radius: 8px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.1);
+            box-shadow: 10px 10px 20px rgba(246, 137, 52, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.4s ease;
         }
@@ -49,9 +50,18 @@
         /* Press Effect - darker color */
         .nav-button:active {
             background-color: #011522; /* Darker color on press */
-            transform: translateY(4px);
-            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05);
+            transform: translateY(8px);
+            box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.4), inset -10px -10px 20px rgba(255, 255, 255, 0.1);
             transition: transform 0.4s ease;
+        }
+
+        /* Clown Image Styling */
+        #clown {
+            display: none;
+            position: absolute;
+            width: 100px;
+            height: auto;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -60,27 +70,41 @@
     <div class="header-bg">
         <header>
             <nav>
-                <button class="nav-button" data-hover-color="#FF5733" data-url="https://www.google.com">Home</button>
-                <button class="nav-button" data-hover-color="#33FF57" data-url="https://www.google.com">About</button>
-                <button class="nav-button" data-hover-color="#5733FF" data-url="https://www.google.com">Web Design</button>
-                <button class="nav-button" data-hover-color="#33C3FF" data-url="https://www.google.com">App Design</button>
-                <button class="nav-button" data-hover-color="#FFC133" data-url="https://www.google.com">Video</button>
-                <button class="nav-button" data-hover-color="#FF3333" data-url="https://www.google.com">Contact</button>
+                <button class="nav-button" data-hover-color="#FF5733" data-url="https://www.google.com" data-clown-x="50" data-clown-y="100">Home</button>
+                <button class="nav-button" data-hover-color="#33FF57" data-url="https://www.google.com" data-clown-x="200" data-clown-y="150">About</button>
+                <button class="nav-button" data-hover-color="#5733FF" data-url="https://www.google.com" data-clown-x="300" data-clown-y="200">Web Design</button>
+                <button class="nav-button" data-hover-color="#33C3FF" data-url="https://www.google.com" data-clown-x="400" data-clown-y="250">App Design</button>
+                <button class="nav-button" data-hover-color="#FFC133" data-url="https://www.google.com" data-clown-x="500" data-clown-y="300">Video</button>
+                <button class="nav-button" data-hover-color="#FF3333" data-url="https://www.google.com" data-clown-x="600" data-clown-y="350">Contact</button>
             </nav>
         </header>
     </div>
 
+    <!-- Clown Image -->
+    <img id="clown" src="https://media.istockphoto.com/id/177021845/photo/clown.jpg?s=612x612&w=0&k=20&c=4lQ4OWzVcO8ZtD0wozAEdYxCqe2-8gG-r8BLhnIznN0=" alt="Clown">
+
     <script>
         const header = document.querySelector('header');
+        const clownImage = document.getElementById('clown');
 
         document.querySelectorAll('.nav-button').forEach(button => {
             button.addEventListener('mouseover', function() {
                 const color = this.getAttribute('data-hover-color');
                 header.style.backgroundColor = color;
+
+                // Show clown image at specified location
+                const clownX = this.getAttribute('data-clown-x');
+                const clownY = this.getAttribute('data-clown-y');
+                clownImage.style.left = `${clownX}px`;
+                clownImage.style.top = `${clownY}px`;
+                clownImage.style.display = 'block';
             });
 
             button.addEventListener('mouseout', function() {
                 header.style.backgroundColor = '#012035'; // Original header color
+                
+                // Hide clown image
+                clownImage.style.display = 'none';
             });
 
             // Handle button press and release effect before loading the link
@@ -89,8 +113,8 @@
 
                 // Add press effect
                 this.style.backgroundColor = "#011522"; // Darker color on press
-                this.style.transform = "translateY(4px)";
-                this.style.boxShadow = "inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.05)";
+                this.style.transform = "translateY(8px)";
+                this.style.boxShadow = "inset 10px 10px 20px rgba(0, 0, 0, 0.4), inset -10px -10px 20px rgba(255, 255, 255, 0.1)";
 
                 // Delay link navigation until after animation
                 setTimeout(() => {
