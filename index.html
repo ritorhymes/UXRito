@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embeveled Buttons with Clown Pop-Up</title>
+    <title>Enhanced Embeveled Buttons with Clown Pop-Up</title>
     <style>
         body {
             margin: 0;
@@ -37,9 +37,12 @@
             font-weight: bold;
             border: none;
             border-radius: 8px;
-            box-shadow: 10px 10px 20px rgba(246, 137, 52, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.4s ease;
+            
+            /* Enhanced 3D Bevel Effect */
+            box-shadow: 10px 10px 20px rgba(246, 137, 52, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.5), 
+                        inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.2);
         }
 
         /* Hover Effect - lighter color */
@@ -47,7 +50,7 @@
             background-color: #254A75; /* Lighter color on hover */
         }
 
-        /* Press Effect - darker color */
+        /* Press Effect - deeper 3D impression */
         .nav-button:active {
             background-color: #011522; /* Darker color on press */
             transform: translateY(8px);
@@ -81,7 +84,7 @@
     </div>
 
     <!-- Clown Image -->
-    <img id="clown" src="https://media.istockphoto.com/id/177021845/photo/clown.jpg?s=612x612&w=0&k=20&c=4lQ4OWzVcO8ZtD0wozAEdYxCqe2-8gG-r8BLhnIznN0=" alt="Clown">
+    <img id="clown" src="https://st2.depositphotos.com/1000975/5793/i/450/depositphotos_57938079-stock-photo-clown-with-loudspeaker-on-white.jpg" alt="Clown">
 
     <script>
         const header = document.querySelector('header');
@@ -124,6 +127,14 @@
                     // Navigate to URL after animation completes
                     window.location.href = this.getAttribute('data-url'); 
                 }, 1200); // Adjust timing to 1.2 seconds for press/release animation
+            });
+        });
+
+        // Reset button state on page load to prevent stuck down button
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.style.transform = 'translateY(0)';
+                button.style.boxShadow = '10px 10px 20px rgba(246, 137, 52, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.5)';
             });
         });
     </script>
