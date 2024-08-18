@@ -4,7 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Styles for the images */
+        .hover-image {
+            width: 200px;
+            height: auto;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Hover effect */
+        .hover-image:hover {
+            animation: flash 1s infinite alternate;
+        }
+
+        /* Flashing effect */
+        @keyframes flash {
+            0% {
+                background-color: red;
+            }
+            100% {
+                background-color: blue;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,6 +76,9 @@
     <main>
         <section id="home">
             <h2>This is the Home Page</h2>
+            <!-- Added images with hover effect -->
+            <img src="images/userresearch.png" alt="User Research" class="hover-image">
+            <img src="images/prototyping1.png" alt="Prototyping" class="hover-image">
         </section>
         <section id="about">
             <h2>About Me</h2>
@@ -35,4 +93,3 @@
     </footer>
 </body>
 </html>
-
